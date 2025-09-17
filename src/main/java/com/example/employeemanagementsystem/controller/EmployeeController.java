@@ -3,11 +3,13 @@ package com.example.employeemanagementsystem.controller;
 import com.example.employeemanagementsystem.model.Employee;
 import com.example.employeemanagementsystem.response.StatusResponse;
 import com.example.employeemanagementsystem.service.EmployeeService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
+@CrossOrigin
 @RequestMapping("/api")
 public class EmployeeController {
 
@@ -23,18 +25,28 @@ public class EmployeeController {
     }
 
     @GetMapping("/employees")
-    public StatusResponse<List<Employee>> getAllEmployee(){
+    public ResponseEntity<StatusResponse<List<Employee>>> getAllEmployee(){
         return service.getAllEmployee();
     }
 
     @GetMapping("/employees/{id}")
-    public StatusResponse<Employee> getEmployeeById(@PathVariable int id){
+    public ResponseEntity<StatusResponse<Employee>> getEmployeeById(@PathVariable int id){
         return service.getEmployeeById(id);
     }
 
     @PostMapping("/employees")
-    public StatusResponse<Employee> insertEmployee(@RequestBody Employee employee){
+    public ResponseEntity<StatusResponse<Employee>> insertEmployee(@RequestBody Employee employee){
         return service.insertEmployee(employee);
+    }
+
+    @PutMapping("/employees/{id}")
+    public ResponseEntity<StatusResponse<Employee>> updateEmployee(@PathVariable int id, @RequestBody Employee employee){
+        return service.updateEmployee(id, employee);
+    }
+
+    @DeleteMapping("/employees/{id}")
+    public ResponseEntity<StatusResponse<String>> deleteEmployee(@PathVariable int id){
+        return service.deleteEmployee(id);
     }
 
 }
