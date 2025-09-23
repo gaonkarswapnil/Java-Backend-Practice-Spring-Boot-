@@ -3,6 +3,7 @@ package com.example.employeemanagementsystem.controller;
 import com.example.employeemanagementsystem.model.Employee;
 import com.example.employeemanagementsystem.response.StatusResponse;
 import com.example.employeemanagementsystem.service.EmployeeService;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,8 +21,8 @@ public class EmployeeController {
     }
 
     @RequestMapping({"","/"})
-    public String getMessage(){
-        return "Hello from Controller";
+    public String getMessage(HttpServletRequest request){
+        return "Hello from Controller"+request.getSession().getId();
     }
 
     @GetMapping("/employees")
