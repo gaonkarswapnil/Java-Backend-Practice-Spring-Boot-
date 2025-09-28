@@ -23,7 +23,7 @@ public class EmployeeController {
 
     @RequestMapping({"","/"})
     public String getMessage(HttpServletRequest request){
-        return "Hello from Controller"+request.getSession().getId();
+        return "Hello from Controller "+request.getSession().getId();
     }
 
     @GetMapping("/employees")
