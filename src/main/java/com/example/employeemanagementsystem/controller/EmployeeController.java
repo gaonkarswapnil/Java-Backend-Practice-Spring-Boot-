@@ -5,6 +5,7 @@ import com.example.employeemanagementsystem.response.StatusResponse;
 import com.example.employeemanagementsystem.service.EmployeeService;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.web.csrf.CsrfToken;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -50,4 +51,8 @@ public class EmployeeController {
         return service.deleteEmployee(id);
     }
 
+    @GetMapping("/csrf-token")
+    public CsrfToken getCsrfToken(HttpServletRequest request){
+        return (CsrfToken) request.getAttribute("_csrf");
+    }
 }
